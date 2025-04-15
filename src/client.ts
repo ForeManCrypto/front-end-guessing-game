@@ -1,18 +1,11 @@
 import { SigningCosmWasmClient } from '@cosmjs/cosmwasm-stargate';
 import { GasPrice } from '@cosmjs/stargate';
+import { OfflineSigner } from '@cosmjs/proto-signing';
 
-//testnet
-const RPC_ENDPOINT = 'https://rpc-testnet.shareri.ng';
+const RPC_ENDPOINT = '/api/proxy'; // Vercel serverless proxy
 const REST_ENDPOINT = 'https://lcd-testnet.shareri.ng';
 const CHAIN_ID = 'ShareRing-KUD';
-const CONTRACT_ADDRESS = 'shareledger1g4xlpqy29m50j5y69reguae328tc9y83l4299pf2wmjn0xczq5jscm4x5r';
-
-// mainnet
-//const RPC_ENDPOINT = 'https://rpc.explorer.shareri.ng';
-//const REST_ENDPOINT = 'https://lcd.explorer.shareri.ng';
-//const CHAIN_ID = 'ShareRing-VoyagerNet';
-//const CONTRACT_ADDRESS = 'shareledger157ls6j2f4u5sze23l4mlcasdys48qz97rhlytexhwumqdmwuf2pq8vrs2y';
-
+const CONTRACT_ADDRESS = 'shareledger157ls6j2f4u5sze23l4mlcasdys48qz97rhlytexhwumqdmwuf2pq8vrs2y'; // Placeholder
 
 export async function connectWallet() {
   if (!window.keplr) {
@@ -74,7 +67,7 @@ export async function connectWallet() {
 
   try {
     console.log('Getting offline signer...');
-    const offlineSigner = window.keplr.getOfflineSigner(CHAIN_ID);
+    const offlineSigner: OfflineSigner = window.keplr.getOfflineSigner(CHAIN_ID);
     const accounts = await offlineSigner.getAccounts();
     console.log('Accounts:', accounts);
 
@@ -84,9 +77,11 @@ export async function connectWallet() {
       offlineSigner,
       {
         gasPrice: GasPrice.fromString('40000nshr'),
-        }
+        broadcastPollIntervalMs: 300, // Force polling
+        broadcastTimeoutMs: 60000,
+      }
     );
-    console.log('Client connected');
+    console.log('Client connected successfully');
     return { client, address: accounts[0].address };
   } catch (error) {
     console.error('Client connection error:', error);
