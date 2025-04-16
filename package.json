@@ -10,6 +10,7 @@
     "@cosmjs/stargate": "^0.33.1",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
+    "@keplr-wallet/types": "^0.12.219",
     "@mui/material": "^7.0.2",
     "@mui/types": "^7.4.0",
     "@shareledgerjs/amino": "^0.31.1-alpha1",

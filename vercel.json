@@ -3,6 +3,14 @@
       {
         "source": "/api/proxy/:path*",
         "destination": "/api/proxy"
+      },
+      {
+        "source": "/manifest.json",
+        "destination": "/manifest.json"
+      },
+      {
+        "source": "/icon.png",
+        "destination": "/icon.png"
       }
     ]
   }

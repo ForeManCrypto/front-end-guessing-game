@@ -1,16 +1,24 @@
 import { SigningCosmWasmClient } from '@cosmjs/cosmwasm-stargate';
 import { GasPrice } from '@cosmjs/stargate';
-import { OfflineSigner } from '@cosmjs/proto-signing';
 
-const RPC_ENDPOINT = '/api/proxy'; // Vercel serverless proxy
+
+//testnet
+const RPC_ENDPOINT = 'http://localhost:3001';
 const REST_ENDPOINT = 'https://lcd-testnet.shareri.ng';
 const CHAIN_ID = 'ShareRing-KUD';
-const CONTRACT_ADDRESS = 'shareledger157ls6j2f4u5sze23l4mlcasdys48qz97rhlytexhwumqdmwuf2pq8vrs2y'; // Placeholder
+const CONTRACT_ADDRESS = 'shareledger1g4xlpqy29m50j5y69reguae328tc9y83l4299pf2wmjn0xczq5jscm4x5r';
+
+// mainnet
+//const RPC_ENDPOINT = 'https://rpc.explorer.shareri.ng';
+//const REST_ENDPOINT = 'https://lcd.explorer.shareri.ng';
+//const CHAIN_ID = 'ShareRing-VoyagerNet';
+//const CONTRACT_ADDRESS = 'shareledger157ls6j2f4u5sze23l4mlcasdys48qz97rhlytexhwumqdmwuf2pq8vrs2y';
+
 
 export async function connectWallet() {
-  if (!window.keplr) {
-    throw new Error('Please install Keplr extension');
-  }
+   if (!window.keplr) {
+         throw new Error('Please install Keplr extension');
+     }
 
   const chainInfo = {
     chainId: CHAIN_ID,
@@ -56,37 +64,25 @@ export async function connectWallet() {
   };
 
   try {
-    console.log('Suggesting chain:', chainInfo);
     await window.keplr.experimentalSuggestChain(chainInfo);
-    console.log('Enabling chain:', CHAIN_ID);
     await window.keplr.enable(CHAIN_ID);
-  } catch (error) {
-    console.error('Keplr setup error:', error);
-    throw new Error(`Failed to set up Keplr: ${(error as Error).message}`);
-  }
+} catch (error) {
+    console.error('Keplr connection error:', error);
+    throw new Error(`Failed to connect to Keplr: ${(error as Error).message}`);
+}
 
-  try {
-    console.log('Getting offline signer...');
-    const offlineSigner: OfflineSigner = window.keplr.getOfflineSigner(CHAIN_ID);
-    const accounts = await offlineSigner.getAccounts();
-    console.log('Accounts:', accounts);
+const offlineSigner = window.keplr.getOfflineSigner(CHAIN_ID);
+const accounts = await offlineSigner.getAccounts();
 
-    console.log('Connecting to RPC:', RPC_ENDPOINT);
-    const client = await SigningCosmWasmClient.connectWithSigner(
-      RPC_ENDPOINT,
-      offlineSigner,
-      {
-        gasPrice: GasPrice.fromString('40000nshr'),
-        broadcastPollIntervalMs: 300, // Force polling
-        broadcastTimeoutMs: 60000,
-      }
-    );
-    console.log('Client connected successfully');
-    return { client, address: accounts[0].address };
-  } catch (error) {
-    console.error('Client connection error:', error);
-    throw new Error(`Failed to connect client: ${(error as Error).message}`);
-  }
+const client = await SigningCosmWasmClient.connectWithSigner(
+    RPC_ENDPOINT,
+    offlineSigner,
+    {
+        gasPrice: GasPrice.fromString('40000nshr'), // Matches 'average' gasPriceStep
+    }
+);
+
+return { client, address: accounts[0].address };
 }
 
 export { CONTRACT_ADDRESS };
