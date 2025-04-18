@@ -1,9 +1,11 @@
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
 module.exports = (req, res) => {
+  console.log('Proxy request:', req.url);
   createProxyMiddleware({
     target: 'https://rpc-testnet.shareri.ng',
     changeOrigin: true,
+    ws: true, // Enable WebSocket support
     pathRewrite: { '^/api/proxy': '' },
     onProxyRes: (proxyRes) => {
       proxyRes.headers['Access-Control-Allow-Origin'] = '*';
@@ -16,4 +18,3 @@ module.exports = (req, res) => {
     }
   })(req, res);
 };
-
