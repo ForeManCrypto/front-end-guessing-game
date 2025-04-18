@@ -3,7 +3,8 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 module.exports = (req, res) => {
   console.log('Proxy request:', req.url, 'Method:', req.method);
   const proxy = createProxyMiddleware({
-    target: 'https://rpc-testnet.shareri.ng',
+    target: 'http://35.199.47.86:26657',
+    //target: 'https://rpc-testnet.shareri.ng',
     changeOrigin: true,
     ws: true,
     pathRewrite: { '^/api/proxy': '' },
