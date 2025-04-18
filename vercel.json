@@ -1,21 +1,8 @@
 {
-  "version": 2,
-  "framework": "create-react-app",
-  "routes": [
+  "rewrites": [
     {
-      "src": "/api/proxy/(.*)",
-      "dest": "/api/proxy",
-      "methods": ["GET", "POST", "OPTIONS"]
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/"
+      "source": "/api/proxy/:path*",
+      "destination": "/api/proxy"
     }
-  ],
-  "functions": {
-    "api/proxy.js": {
-      "memory": 1024,
-      "maxDuration": 30
-    }
-  }
+  ]
 }
