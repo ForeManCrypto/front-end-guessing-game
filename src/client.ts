@@ -3,7 +3,7 @@ import { GasPrice } from '@cosmjs/stargate';
 
 
 //testnet
-const RPC_ENDPOINT = 'http://localhost:3001';
+export const RPC_ENDPOINT = process.env.REACT_APP_RPC_URL || '/api/proxy';
 const REST_ENDPOINT = 'https://lcd-testnet.shareri.ng';
 const CHAIN_ID = 'ShareRing-KUD';
 const CONTRACT_ADDRESS = 'shareledger1g4xlpqy29m50j5y69reguae328tc9y83l4299pf2wmjn0xczq5jscm4x5r';
