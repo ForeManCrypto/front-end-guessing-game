@@ -1,8 +1,15 @@
 {
+  "name": "Shareledger Guessing Game",
   "short_name": "Guessing Game",
-  "name": "ShareLedger Guessing Game",
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
+  "background_color": "#ffffff",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
 }
