@@ -10,7 +10,9 @@
     "@cosmjs/stargate": "^0.33.1",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
+    "@fontsource/inter": "^5.2.5",
     "@keplr-wallet/types": "^0.12.219",
+    "@mui/icons-material": "^7.0.2",
     "@mui/material": "^7.0.2",
     "@mui/types": "^7.4.0",
     "@shareledgerjs/amino": "^0.31.1-alpha1",
@@ -33,6 +35,7 @@
     "node-fetch": "^3.3.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-router-dom": "^7.5.1",
     "stream-browserify": "^3.0.0",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"

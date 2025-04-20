@@ -6,13 +6,22 @@ import { GasPrice } from '@cosmjs/stargate';
 const RPC_ENDPOINT = 'http://localhost:3001';
 const REST_ENDPOINT = 'https://lcd-testnet.shareri.ng';
 const CHAIN_ID = 'ShareRing-KUD';
-const CONTRACT_ADDRESS = 'shareledger1g4xlpqy29m50j5y69reguae328tc9y83l4299pf2wmjn0xczq5jscm4x5r';
+const CONTRACT_ADDRESS = 'shareledger1hyja4uyjktpeh0fxzuw2fmjudr85rk2qu98fa6nuh6d4qru9l0sscg22hg';
 
 // mainnet
 //const RPC_ENDPOINT = 'https://rpc.explorer.shareri.ng';
 //const REST_ENDPOINT = 'https://lcd.explorer.shareri.ng';
 //const CHAIN_ID = 'ShareRing-VoyagerNet';
 //const CONTRACT_ADDRESS = 'shareledger157ls6j2f4u5sze23l4mlcasdys48qz97rhlytexhwumqdmwuf2pq8vrs2y';
+
+
+export const config = {
+  chainId: 'ShareRing-KUD', // Replace with actual Shareledger chain ID (e.g., shareledger-testnet-1)
+  rpcEndpoint: 'http://localhost:3001', // Replace with actual Shareledger RPC
+  prefix: 'shareledger', // Address prefix for Shareledger
+  denom: 'nshr', // Micro-SHR (10^-6 SHR)
+  gasPrice: GasPrice.fromString('0.025nshr'), // Adjust based on network
+};
 
 
 export async function connectWallet() {
