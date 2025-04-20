@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { SigningCosmWasmClient } from '@cosmjs/cosmwasm-stargate';
-import { Typography, Button, Box, Paper, CircularProgress, TextField, Divider, Grid, Card, CardContent, Container, Tooltip } from '@mui/material';
+import { Typography, Button, Box, Paper, CircularProgress, TextField, Divider, Grid, Card, CardContent, Container, Tooltip, GridProps } from '@mui/material';
 import { styled } from '@mui/system';
 import { CONTRACT_ADDRESS, config } from '../client';
 import '@fontsource/inter/400.css';
@@ -309,7 +309,7 @@ const GuessingGamePage: React.FC<GuessingGamePageProps> = ({ client, address }) 
               </CardContent>
             </StyledCard>
           </Grid>
-
+  
           {/* Info Panel (Top Right) */}
           <Grid item xs={12} md={6}>
             <StyledCard>
@@ -357,7 +357,7 @@ const GuessingGamePage: React.FC<GuessingGamePageProps> = ({ client, address }) 
               </CardContent>
             </StyledCard>
           </Grid>
-
+  
           {/* Number Panel (Bottom, Large) */}
           <Grid item xs={12}>
             <StyledCard sx={{ minHeight: { xs: '300px', md: gameState?.max_guesses && gameState.max_guesses <= 10 ? '250px' : '400px' } }}>
@@ -430,17 +430,19 @@ const GuessingGamePage: React.FC<GuessingGamePageProps> = ({ client, address }) 
                     color: message.includes('Error') ? '#D32F2F' : '#2E7D32',
                     fontFamily: 'Inter',
                     fontWeight: 'medium',
+                    textAlign: 'center',
                   }}
+                  aria-live="polite"
                 >
                   {message}
                 </Typography>
               </CardContent>
             </StyledCard>
           </Grid>
-
+  
           {/* Admin Panel (Bottom, Small) */}
           {gameState && address === gameState.admin && (
-            <Grid item xs={12}>
+            <Grid item xs={12} component="div">
               <AdminCard>
                 <CardContent sx={{ p: 3 }}>
                   <Typography variant="h6" sx={{ color: '#0A0F26', fontFamily: 'Inter', fontWeight: 'bold', mb: 2 }}>
