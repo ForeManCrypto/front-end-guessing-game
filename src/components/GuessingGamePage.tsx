@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { SigningCosmWasmClient } from '@cosmjs/cosmwasm-stargate';
-import { Typography, Button, Box, Paper, CircularProgress, TextField, Divider, Grid, Card, CardContent, Container, Tooltip, GridProps } from '@mui/material';
+import { Typography, Button, Box, CircularProgress, TextField, Grid, Card, CardContent, Container, Tooltip } from '@mui/material';
 import { styled } from '@mui/system';
 import { CONTRACT_ADDRESS, config } from '../client';
 import '@fontsource/inter/400.css';
