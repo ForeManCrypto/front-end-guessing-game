@@ -1,8 +1,6 @@
 {
-  "name": "Guessing Game",
-  "short_name": "Guessing Game",
-  "start_url": "/",
-  "display": "standalone",
-  "theme_color": "#1976d2",
-  "background_color": "#ffffff"
+  "version": "1.0.0",
+  "offline_mode": false,
+  "isMaintenance": false,
+  "enable_secure_screen": false
 }
