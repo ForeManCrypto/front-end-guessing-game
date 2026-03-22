@@ -1,5 +1,8 @@
 {
+  "name": "Guessing Game",
+  "description": "A number guessing game dApp on ShareLedger",
   "version": "1.0.0",
+  "entry": "index.html",
   "offline_mode": false,
   "isMaintenance": false,
   "enable_secure_screen": false
