@@ -2,20 +2,7 @@
   "name": "Guessing Game",
   "description": "A number guessing game dApp on ShareLedger",
   "version": "1.0.0",
-  "entry": "index.html",
   "offline_mode": false,
   "isMaintenance": false,
-  "enable_secure_screen": false,
-  "icons": [
-    {
-      "src": "logo192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "logo512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ]
+  "enable_secure_screen": false
 }
